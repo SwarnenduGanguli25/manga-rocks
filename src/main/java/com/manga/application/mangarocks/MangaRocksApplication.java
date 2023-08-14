@@ -11,10 +11,10 @@ import java.util.TimeZone;
 public class MangaRocksApplication {
 
 	public static void main(String[] args) {
-		log.info("Starting the Server....");
+		log.info("Starting the MangaRocks Server....");
 		TimeZone.setDefault(TimeZone.getTimeZone("IST"));
 		SpringApplication.run(MangaRocksApplication.class, args);
-		log.info("Server is up!! with timezone {}", TimeZone.getDefault());
+		log.info("MangaRocks Server is up!! with timezone {}", TimeZone.getDefault());
 	}
 
 }
