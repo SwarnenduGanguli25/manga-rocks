@@ -8,6 +8,7 @@ import com.manga.application.mangarocks.service.CategoryService;
 import com.manga.application.mangarocks.utils.JsonParser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +23,7 @@ public class CategoryControllerImpl implements CategoryController {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public GenericResponse createMangaCategory(CategoryDTO categoryDTO) throws JsonProcessingException {
+    public ResponseEntity<GenericResponse> createMangaCategory(CategoryDTO categoryDTO) throws JsonProcessingException {
         log.info("Create Manga Category Request {}", JsonParser.objectToJson(objectMapper.writeValueAsString(categoryDTO)));
         return categoryService.createCategory(categoryDTO);
     }

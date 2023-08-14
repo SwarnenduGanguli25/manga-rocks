@@ -14,12 +14,16 @@ public class CategoryDataServiceImpl implements CategoryDataSevice {
     private CategoryRepo categoryRepo;
 
     @Override
-    public Category save(String categoryName, String categoryDescription) {
+    public void save(String categoryName, String categoryDescription) {
         Category category = Category.builder().
                 categoryName(categoryName).
                 categoryDescription(categoryDescription).build();
         categoryRepo.save(category);
         log.info("New Category has been saved.");
-        return category;
+    }
+
+    @Override
+    public Category findByCategory(String categoryName) {
+        return categoryRepo.findByCategoryName(categoryName);
     }
 }
