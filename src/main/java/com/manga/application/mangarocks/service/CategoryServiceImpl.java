@@ -3,8 +3,7 @@ package com.manga.application.mangarocks.service;
 import com.manga.application.mangarocks.db.CategoryDataSevice;
 import com.manga.application.mangarocks.dto.CategoryDTO;
 import com.manga.application.mangarocks.dto.GenericResponse;
-import com.manga.application.mangarocks.dto.ResultResponse;
-import com.manga.application.mangarocks.exceptions.ValidationException;
+import com.manga.application.mangarocks.exceptions.InvalidIdException;
 import com.manga.application.mangarocks.model.Category;
 import com.manga.application.mangarocks.utils.ResponseBuilder;
 import com.manga.application.mangarocks.utils.ValidationUtil;
@@ -17,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -42,6 +42,15 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public ResponseEntity<GenericResponse> getAllCategory() {
         List<Category> categoryList = categoryDataSevice.getAllCategories();
-        return new ResponseEntity<>(GenericResponse.builder().successResponse(categoryList).build(), HttpStatus.OK);
+        return responseBuilder.getSuccessResponse(categoryList, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<GenericResponse> getCategoryById(String id) {
+        Optional<Category> category = categoryDataSevice.findById(Long.parseLong(id));
+        if (category.isEmpty())
+            throw new InvalidIdException("No Category with this Id exists");
+        else
+            return responseBuilder.getSuccessResponse(category.get(), HttpStatus.OK);
     }
 }

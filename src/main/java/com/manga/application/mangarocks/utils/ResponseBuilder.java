@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class ResponseBuilder {
 
-    public ResponseEntity<GenericResponse> getSuccessResponse(String message, HttpStatus httpStatus) {
+    public <T> ResponseEntity<GenericResponse> getSuccessResponse(T message, HttpStatus httpStatus) {
         GenericResponse genericResponse = GenericResponse.builder().successResponse(message).build();
         return new ResponseEntity<>(genericResponse, httpStatus);
     }

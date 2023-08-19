@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -32,5 +33,10 @@ public class CategoryDataServiceImpl implements CategoryDataSevice {
     @Override
     public List<Category> getAllCategories() {
         return categoryRepo.findAll();
+    }
+
+    @Override
+    public Optional<Category> findById(long id) {
+        return categoryRepo.findById(id);
     }
 }

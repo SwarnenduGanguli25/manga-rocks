@@ -8,4 +8,6 @@ public interface CategoryService {
     ResponseEntity<GenericResponse> createCategory(CategoryDTO categoryDTO);
 
     ResponseEntity<GenericResponse> getAllCategory();
+
+    ResponseEntity<GenericResponse> getCategoryById(String id);
 }

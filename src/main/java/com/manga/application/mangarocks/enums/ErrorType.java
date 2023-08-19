@@ -6,7 +6,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public enum ErrorType {
-    BAD_REQUEST("BAD_REQUEST", "Bad Request");
+    BAD_REQUEST("BAD_REQUEST", "Bad Request"),
+    ID_NOT_FOUND("ID_NOT_FOUND", "No Item with this Id found");
 
     private String errorCode;
     private String errorDescription;
