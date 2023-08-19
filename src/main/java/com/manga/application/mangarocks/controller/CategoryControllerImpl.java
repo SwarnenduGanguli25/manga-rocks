@@ -39,4 +39,10 @@ public class CategoryControllerImpl implements CategoryController {
         log.info("Fetching Category with id : {}", id);
         return categoryService.getCategoryById(id);
     }
+
+    @Override
+    public ResponseEntity<GenericResponse> getMangaCategoryByIdParam(String id) {
+        log.info("Fetching Category with id : {}", id);
+        return categoryService.getCategoryById(id);
+    }
 }

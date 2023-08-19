@@ -5,10 +5,7 @@ import com.manga.application.mangarocks.dto.CategoryDTO;
 import com.manga.application.mangarocks.dto.GenericResponse;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 public interface CategoryController {
 
@@ -20,4 +17,7 @@ public interface CategoryController {
 
     @RequestMapping(value = "/category/get/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     ResponseEntity<GenericResponse> getMangaCategoryById(@PathVariable("id") String id);
+
+    @RequestMapping(value = "/category/get", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    ResponseEntity<GenericResponse> getMangaCategoryByIdParam(@RequestParam("id") String id);
 }
