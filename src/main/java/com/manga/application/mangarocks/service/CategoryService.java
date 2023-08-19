@@ -9,5 +9,7 @@ public interface CategoryService {
 
     ResponseEntity<GenericResponse> getAllCategory();
 
-    ResponseEntity<GenericResponse> getCategoryById(String id);
+    ResponseEntity<GenericResponse> getCategoryById(Long id);
+
+    ResponseEntity<GenericResponse> getCategoryByName(String name);
 }

@@ -46,11 +46,20 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public ResponseEntity<GenericResponse> getCategoryById(String id) {
-        Optional<Category> category = categoryDataSevice.findById(Long.parseLong(id));
+    public ResponseEntity<GenericResponse> getCategoryById(Long id) {
+        Optional<Category> category = categoryDataSevice.findById(id);
         if (category.isEmpty())
             throw new InvalidIdException("No Category with this Id exists");
         else
             return responseBuilder.getSuccessResponse(category.get(), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<GenericResponse> getCategoryByName(String name) {
+        Category category = categoryDataSevice.findByCategory(name);
+        if (Objects.isNull(category))
+            throw new InvalidIdException("No Category with this Name Exists");
+        else
+            return responseBuilder.getSuccessResponse(category, HttpStatus.OK);
     }
 }

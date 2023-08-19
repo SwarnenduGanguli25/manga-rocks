@@ -16,8 +16,11 @@ public interface CategoryController {
     ResponseEntity<GenericResponse> getAllMangaCategory();
 
     @RequestMapping(value = "/category/get/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    ResponseEntity<GenericResponse> getMangaCategoryById(@PathVariable("id") String id);
+    ResponseEntity<GenericResponse> getMangaCategoryById(@PathVariable("id") Long id);
 
     @RequestMapping(value = "/category/get", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    ResponseEntity<GenericResponse> getMangaCategoryByIdParam(@RequestParam("id") String id);
+    ResponseEntity<GenericResponse> getMangaCategoryByIdParam(@RequestParam("id") Long id);
+
+    @RequestMapping(value = "/category/getByName", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    ResponseEntity<GenericResponse> getMangaCategoryByName(@RequestParam("name") String name);
 }
