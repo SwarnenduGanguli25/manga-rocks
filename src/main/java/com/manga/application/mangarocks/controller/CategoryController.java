@@ -13,4 +13,7 @@ public interface CategoryController {
 
     @RequestMapping(value = "/category/create", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     ResponseEntity<GenericResponse> createMangaCategory(@RequestBody CategoryDTO categoryDTO) throws JsonProcessingException;
+
+    @RequestMapping(value = "/category/getAll", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    ResponseEntity<GenericResponse> getAllMangaCategory();
 }

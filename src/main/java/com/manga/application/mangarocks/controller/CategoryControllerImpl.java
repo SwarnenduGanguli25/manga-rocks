@@ -27,4 +27,10 @@ public class CategoryControllerImpl implements CategoryController {
         log.info("Create Manga Category Request {}", JsonParser.objectToJson(objectMapper.writeValueAsString(categoryDTO)));
         return categoryService.createCategory(categoryDTO);
     }
+
+    @Override
+    public ResponseEntity<GenericResponse> getAllMangaCategory() {
+        log.info("Fetching all Categories list.");
+        return categoryService.getAllCategory();
+    }
 }

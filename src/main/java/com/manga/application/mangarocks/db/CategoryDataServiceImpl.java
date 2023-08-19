@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 public class CategoryDataServiceImpl implements CategoryDataSevice {
@@ -25,5 +27,10 @@ public class CategoryDataServiceImpl implements CategoryDataSevice {
     @Override
     public Category findByCategory(String categoryName) {
         return categoryRepo.findByCategoryName(categoryName);
+    }
+
+    @Override
+    public List<Category> getAllCategories() {
+        return categoryRepo.findAll();
     }
 }

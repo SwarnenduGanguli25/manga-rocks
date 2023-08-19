@@ -6,4 +6,6 @@ import org.springframework.http.ResponseEntity;
 
 public interface CategoryService {
     ResponseEntity<GenericResponse> createCategory(CategoryDTO categoryDTO);
+
+    ResponseEntity<GenericResponse> getAllCategory();
 }

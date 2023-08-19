@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -36,5 +37,11 @@ public class CategoryServiceImpl implements CategoryService {
         }
         categoryDataSevice.save(categoryDTO.getMangaCategoryName(), categoryDTO.getCategoryDescription());
         return responseBuilder.getSuccessResponse("New Category added Successfully", HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<GenericResponse> getAllCategory() {
+        List<Category> categoryList = categoryDataSevice.getAllCategories();
+        return new ResponseEntity<>(GenericResponse.builder().successResponse(categoryList).build(), HttpStatus.OK);
     }
 }
