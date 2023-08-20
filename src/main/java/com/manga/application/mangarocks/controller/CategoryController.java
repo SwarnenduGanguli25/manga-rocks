@@ -25,11 +25,14 @@ public interface CategoryController {
     ResponseEntity<GenericResponse> getMangaCategoryByName(@RequestParam("name") String name);
 
     @RequestMapping(value = "/category/update/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
-    ResponseEntity<GenericResponse> updateMangaCategoryById(@PathVariable("id") Long id, @RequestBody CategoryDTO categoryDTO);
+    ResponseEntity<GenericResponse> updateMangaCategoryById(@PathVariable("id") Long id, @RequestBody CategoryDTO categoryDTO) throws JsonProcessingException;
 
     @RequestMapping(value = "/category/updateByName", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
-    ResponseEntity<GenericResponse> updateMangaCategoryByName(@RequestParam("name") String name, @RequestBody CategoryDTO categoryDTO);
+    ResponseEntity<GenericResponse> updateMangaCategoryByName(@RequestParam("name") String name, @RequestBody CategoryDTO categoryDTO) throws JsonProcessingException;
 
     @RequestMapping(value = "/category/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
     ResponseEntity<GenericResponse> deleteMangaCategoryById(@PathVariable("id") Long id);
+
+    @RequestMapping(value = "/category/deleteByName", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
+    ResponseEntity<GenericResponse> deleteMangaCategoryByName(@RequestParam("name") String name);
 }

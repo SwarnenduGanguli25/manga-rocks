@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface CategoryDataSevice {
     void save(final String categoryName, final String categoryDescription);
 
-    Category findByCategory(final String categoryName);
+    Category findByCategoryName(final String categoryName);
 
     List<Category> getAllCategories();
 
@@ -17,4 +17,6 @@ public interface CategoryDataSevice {
     void updateCategory(Category category);
 
     void deleteCategoryById(Long id);
+
+    void deleteCategory(Category category);
 }

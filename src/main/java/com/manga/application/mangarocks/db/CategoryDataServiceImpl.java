@@ -26,7 +26,7 @@ public class CategoryDataServiceImpl implements CategoryDataSevice {
     }
 
     @Override
-    public Category findByCategory(String categoryName) {
+    public Category findByCategoryName(String categoryName) {
         return categoryRepo.findByCategoryName(categoryName);
     }
 
@@ -48,5 +48,10 @@ public class CategoryDataServiceImpl implements CategoryDataSevice {
     @Override
     public void deleteCategoryById(Long id) {
         categoryRepo.deleteById(id);
+    }
+
+    @Override
+    public void deleteCategory(Category category) {
+        categoryRepo.delete(category);
     }
 }

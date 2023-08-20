@@ -32,7 +32,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public ResponseEntity<GenericResponse> createCategory(CategoryDTO categoryDTO) {
         ValidationUtil.validate(categoryDTO, CategoryCreateRequestValidation.class);
-        Category category = categoryDataSevice.findByCategory(categoryDTO.getMangaCategoryName());
+        Category category = categoryDataSevice.findByCategoryName(categoryDTO.getMangaCategoryName());
         if (Objects.nonNull(category)) {
             log.info("Duplicate Request with same Category name received");
             return responseBuilder.getSuccessResponse("Category with this name already exists!!", HttpStatus.OK);
@@ -58,7 +58,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public ResponseEntity<GenericResponse> getCategoryByName(String name) {
-        Category category = categoryDataSevice.findByCategory(name);
+        Category category = categoryDataSevice.findByCategoryName(name);
         if (Objects.isNull(category))
             throw new InvalidIdException("No Category with this Name Exists!!");
         else
@@ -89,7 +89,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public ResponseEntity<GenericResponse> updateCategoryByName(String name, CategoryDTO categoryDTO) {
-        Category category = categoryDataSevice.findByCategory(name);
+        Category category = categoryDataSevice.findByCategoryName(name);
         if (Objects.isNull(category))
             throw new InvalidIdException("No Category with this Name Exists!!");
         else {
@@ -115,6 +115,17 @@ public class CategoryServiceImpl implements CategoryService {
             throw new InvalidIdException("No Category with this Id exists!!");
         else {
             categoryDataSevice.deleteCategoryById(id);
+        }
+        return responseBuilder.getSuccessResponse("Category has been successfully Deleted!!", HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<GenericResponse> deleteCategoryByName(String name) {
+        Category category = categoryDataSevice.findByCategoryName(name);
+        if (Objects.isNull(category))
+            throw new InvalidIdException("No Category with this Name Exists!!");
+        else {
+            categoryDataSevice.deleteCategory(category);
         }
         return responseBuilder.getSuccessResponse("Category has been successfully Deleted!!", HttpStatus.OK);
     }

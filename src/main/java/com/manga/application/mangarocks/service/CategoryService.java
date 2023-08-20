@@ -18,4 +18,6 @@ public interface CategoryService {
     ResponseEntity<GenericResponse> updateCategoryByName(String name, CategoryDTO categoryDTO);
 
     ResponseEntity<GenericResponse> deleteCategoryById(Long id);
+
+    ResponseEntity<GenericResponse> deleteCategoryByName(String name);
 }

@@ -53,14 +53,14 @@ public class CategoryControllerImpl implements CategoryController {
     }
 
     @Override
-    public ResponseEntity<GenericResponse> updateMangaCategoryById(Long id, CategoryDTO categoryDTO) {
-        log.info("Updating Category with id : {}", id);
+    public ResponseEntity<GenericResponse> updateMangaCategoryById(Long id, CategoryDTO categoryDTO) throws JsonProcessingException {
+        log.info("Update Manga Category Request with id {} is : {}", id, JsonParser.objectToJson(objectMapper.writeValueAsString(categoryDTO)));
         return categoryService.updateCategoryById(id, categoryDTO);
     }
 
     @Override
-    public ResponseEntity<GenericResponse> updateMangaCategoryByName(String name, CategoryDTO categoryDTO) {
-        log.info("Updating Category with category name : {}", name);
+    public ResponseEntity<GenericResponse> updateMangaCategoryByName(String name, CategoryDTO categoryDTO) throws JsonProcessingException {
+        log.info("Update Manga Category Request with name {} is : {}", name, JsonParser.objectToJson(objectMapper.writeValueAsString(categoryDTO)));
         return categoryService.updateCategoryByName(name, categoryDTO);
     }
 
@@ -68,5 +68,11 @@ public class CategoryControllerImpl implements CategoryController {
     public ResponseEntity<GenericResponse> deleteMangaCategoryById(Long id) {
         log.info("Deleting Category with id : {}", id);
         return categoryService.deleteCategoryById(id);
+    }
+
+    @Override
+    public ResponseEntity<GenericResponse> deleteMangaCategoryByName(String name) {
+        log.info("Deleting Category with name : {}", name);
+        return categoryService.deleteCategoryByName(name);
     }
 }
