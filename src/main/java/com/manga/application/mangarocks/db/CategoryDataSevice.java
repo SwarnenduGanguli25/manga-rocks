@@ -13,4 +13,6 @@ public interface CategoryDataSevice {
     List<Category> getAllCategories();
 
     Optional<Category> findById(long id);
+
+    void updateCategory(Category category);
 }

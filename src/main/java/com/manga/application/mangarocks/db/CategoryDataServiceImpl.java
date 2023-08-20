@@ -22,7 +22,7 @@ public class CategoryDataServiceImpl implements CategoryDataSevice {
                 categoryName(categoryName).
                 categoryDescription(categoryDescription).build();
         categoryRepo.save(category);
-        log.info("New Category has been saved.");
+        log.info("New Category has been saved.!!");
     }
 
     @Override
@@ -38,5 +38,10 @@ public class CategoryDataServiceImpl implements CategoryDataSevice {
     @Override
     public Optional<Category> findById(long id) {
         return categoryRepo.findById(id);
+    }
+
+    @Override
+    public void updateCategory(Category category) {
+        categoryRepo.save(category);
     }
 }

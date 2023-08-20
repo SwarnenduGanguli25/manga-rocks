@@ -40,7 +40,7 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
         GenericResponse genericResponse = GenericResponse.builder().errorResponse(
                 new ErrorResponse(
                         e.getErrorCode(),
-                        e.getErrorDescription()
+                        (Strings.isNotBlank(exception.getMessage())) ? exception.getMessage() : e.getErrorDescription()
                 )
         ).build();
         return new ResponseEntity<>(genericResponse, HttpStatus.BAD_REQUEST);
