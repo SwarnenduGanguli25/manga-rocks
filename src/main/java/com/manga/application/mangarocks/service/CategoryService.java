@@ -14,4 +14,6 @@ public interface CategoryService {
     ResponseEntity<GenericResponse> getCategoryByName(String name);
 
     ResponseEntity<GenericResponse> updateCategoryById(Long id, CategoryDTO categoryDTO);
+
+    ResponseEntity<GenericResponse> updateCategoryByName(String name, CategoryDTO categoryDTO);
 }

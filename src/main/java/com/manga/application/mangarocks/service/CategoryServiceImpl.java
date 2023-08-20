@@ -86,4 +86,25 @@ public class CategoryServiceImpl implements CategoryService {
         }
         return responseBuilder.getSuccessResponse("Category has been successfully updated!!", HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<GenericResponse> updateCategoryByName(String name, CategoryDTO categoryDTO) {
+        Category category = categoryDataSevice.findByCategory(name);
+        if (Objects.isNull(category))
+            throw new InvalidIdException("No Category with this Name Exists!!");
+        else {
+            if (Strings.isBlank(categoryDTO.getMangaCategoryName()) && Strings.isBlank(categoryDTO.getCategoryDescription()))
+                throw new ValidationException("No updates were made. Please provide valid inputs for updating");
+            else if (Strings.isBlank(categoryDTO.getMangaCategoryName())) {
+                category.setCategoryDescription(categoryDTO.getCategoryDescription());
+            } else if (Strings.isBlank(categoryDTO.getCategoryDescription())) {
+                category.setCategoryName(categoryDTO.getMangaCategoryName());
+            } else {
+                category.setCategoryName(categoryDTO.getMangaCategoryName());
+                category.setCategoryDescription(categoryDTO.getCategoryDescription());
+            }
+            categoryDataSevice.updateCategory(category);
+        }
+        return responseBuilder.getSuccessResponse("Category has been successfully updated!!", HttpStatus.OK);
+    }
 }

@@ -57,4 +57,10 @@ public class CategoryControllerImpl implements CategoryController {
         log.info("Updating Category with id : {}", id);
         return categoryService.updateCategoryById(id, categoryDTO);
     }
+
+    @Override
+    public ResponseEntity<GenericResponse> updateMangaCategoryByName(String name, CategoryDTO categoryDTO) {
+        log.info("Updating Category with category name : {}", name);
+        return categoryService.updateCategoryByName(name, categoryDTO);
+    }
 }
