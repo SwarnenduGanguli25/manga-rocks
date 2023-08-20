@@ -44,4 +44,9 @@ public class CategoryDataServiceImpl implements CategoryDataSevice {
     public void updateCategory(Category category) {
         categoryRepo.save(category);
     }
+
+    @Override
+    public void deleteCategoryById(Long id) {
+        categoryRepo.deleteById(id);
+    }
 }

@@ -29,4 +29,7 @@ public interface CategoryController {
 
     @RequestMapping(value = "/category/updateByName", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
     ResponseEntity<GenericResponse> updateMangaCategoryByName(@RequestParam("name") String name, @RequestBody CategoryDTO categoryDTO);
+
+    @RequestMapping(value = "/category/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
+    ResponseEntity<GenericResponse> deleteMangaCategoryById(@PathVariable("id") Long id);
 }

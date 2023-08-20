@@ -107,4 +107,15 @@ public class CategoryServiceImpl implements CategoryService {
         }
         return responseBuilder.getSuccessResponse("Category has been successfully updated!!", HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<GenericResponse> deleteCategoryById(Long id) {
+        Optional<Category> optionalCategory = categoryDataSevice.findById(id);
+        if (optionalCategory.isEmpty())
+            throw new InvalidIdException("No Category with this Id exists!!");
+        else {
+            categoryDataSevice.deleteCategoryById(id);
+        }
+        return responseBuilder.getSuccessResponse("Category has been successfully Deleted!!", HttpStatus.OK);
+    }
 }

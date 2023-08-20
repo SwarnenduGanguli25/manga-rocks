@@ -15,4 +15,6 @@ public interface CategoryDataSevice {
     Optional<Category> findById(long id);
 
     void updateCategory(Category category);
+
+    void deleteCategoryById(Long id);
 }
