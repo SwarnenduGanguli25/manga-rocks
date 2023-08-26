@@ -6,6 +6,7 @@ import com.manga.application.mangarocks.dto.CategoryDTO;
 import com.manga.application.mangarocks.dto.GenericResponse;
 import com.manga.application.mangarocks.service.CategoryService;
 import com.manga.application.mangarocks.utils.JsonParser;
+import com.manga.application.mangarocks.utils.MaskingUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +21,11 @@ public class CategoryControllerImpl implements CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper maskingObjectMapper = MaskingUtil.getMaskingObjectMapper();
 
     @Override
     public ResponseEntity<GenericResponse> createMangaCategory(CategoryDTO categoryDTO) throws JsonProcessingException {
-        log.info("Create Manga Category Request {}", JsonParser.objectToJson(objectMapper.writeValueAsString(categoryDTO)));
+        log.info("Create Manga Category Request {}", JsonParser.objectToJson(maskingObjectMapper.writeValueAsString(categoryDTO)));
         return categoryService.createCategory(categoryDTO);
     }
 
@@ -54,13 +55,13 @@ public class CategoryControllerImpl implements CategoryController {
 
     @Override
     public ResponseEntity<GenericResponse> updateMangaCategoryById(Long id, CategoryDTO categoryDTO) throws JsonProcessingException {
-        log.info("Update Manga Category Request with id {} is : {}", id, JsonParser.objectToJson(objectMapper.writeValueAsString(categoryDTO)));
+        log.info("Update Manga Category Request with id {} is : {}", id, JsonParser.objectToJson(maskingObjectMapper.writeValueAsString(categoryDTO)));
         return categoryService.updateCategoryById(id, categoryDTO);
     }
 
     @Override
     public ResponseEntity<GenericResponse> updateMangaCategoryByName(String name, CategoryDTO categoryDTO) throws JsonProcessingException {
-        log.info("Update Manga Category Request with name {} is : {}", name, JsonParser.objectToJson(objectMapper.writeValueAsString(categoryDTO)));
+        log.info("Update Manga Category Request with name {} is : {}", name, JsonParser.objectToJson(maskingObjectMapper.writeValueAsString(categoryDTO)));
         return categoryService.updateCategoryByName(name, categoryDTO);
     }
 
