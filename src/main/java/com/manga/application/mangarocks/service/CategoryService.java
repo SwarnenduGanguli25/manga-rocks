@@ -5,19 +5,22 @@ import com.manga.application.mangarocks.dto.GenericResponse;
 import org.springframework.http.ResponseEntity;
 
 public interface CategoryService {
-    ResponseEntity<GenericResponse> createCategory(CategoryDTO categoryDTO);
+    ResponseEntity<GenericResponse<?>> createCategory(CategoryDTO categoryDTO);
 
-    ResponseEntity<GenericResponse> getAllCategory();
+    ResponseEntity<GenericResponse<?>> getAllCategory();
 
-    ResponseEntity<GenericResponse> getCategoryById(Long id);
+    ResponseEntity<GenericResponse<?>> getCategoryById(Long id);
 
-    ResponseEntity<GenericResponse> getCategoryByName(String name);
+    ResponseEntity<GenericResponse<?>> getCategoryByName(String name);
 
-    ResponseEntity<GenericResponse> updateCategoryById(Long id, CategoryDTO categoryDTO);
+    ResponseEntity<GenericResponse<?>> updateCategoryById(Long id, CategoryDTO categoryDTO);
 
-    ResponseEntity<GenericResponse> updateCategoryByName(String name, CategoryDTO categoryDTO);
+    ResponseEntity<GenericResponse<?>> updateCategoryByName(String name, CategoryDTO categoryDTO);
 
-    ResponseEntity<GenericResponse> deleteCategoryById(Long id);
+    ResponseEntity<GenericResponse<?>> deleteCategoryById(Long id);
 
-    ResponseEntity<GenericResponse> deleteCategoryByName(String name);
+    ResponseEntity<GenericResponse<?>> deleteCategoryByName(String name);
 }
+
+
+

@@ -30,7 +30,7 @@ public class CategoryServiceImpl implements CategoryService {
     private ResponseBuilder responseBuilder;
 
     @Override
-    public ResponseEntity<GenericResponse> createCategory(CategoryDTO categoryDTO) {
+    public ResponseEntity<GenericResponse<?>> createCategory(CategoryDTO categoryDTO) {
         ValidationUtil.validate(categoryDTO, CategoryCreateRequestValidation.class);
         Category category = categoryDataSevice.findByCategoryName(categoryDTO.getMangaCategoryName());
         if (Objects.nonNull(category)) {
@@ -42,13 +42,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public ResponseEntity<GenericResponse> getAllCategory() {
+    public ResponseEntity<GenericResponse<?>> getAllCategory() {
         List<Category> categoryList = categoryDataSevice.getAllCategories();
         return responseBuilder.getSuccessResponse(categoryList, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<GenericResponse> getCategoryById(Long id) {
+    public ResponseEntity<GenericResponse<?>> getCategoryById(Long id) {
         Optional<Category> category = categoryDataSevice.findById(id);
         if (category.isEmpty())
             throw new InvalidIdException("No Category with this Id exists!!");
@@ -57,7 +57,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public ResponseEntity<GenericResponse> getCategoryByName(String name) {
+    public ResponseEntity<GenericResponse<?>> getCategoryByName(String name) {
         Category category = categoryDataSevice.findByCategoryName(name);
         if (Objects.isNull(category))
             throw new InvalidIdException("No Category with this Name Exists!!");
@@ -66,7 +66,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public ResponseEntity<GenericResponse> updateCategoryById(Long id, CategoryDTO categoryDTO) {
+    public ResponseEntity<GenericResponse<?>> updateCategoryById(Long id, CategoryDTO categoryDTO) {
         Optional<Category> optionalCategory = categoryDataSevice.findById(id);
         if (optionalCategory.isEmpty())
             throw new InvalidIdException("No Category with this Id exists!!");
@@ -88,7 +88,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public ResponseEntity<GenericResponse> updateCategoryByName(String name, CategoryDTO categoryDTO) {
+    public ResponseEntity<GenericResponse<?>> updateCategoryByName(String name, CategoryDTO categoryDTO) {
         Category category = categoryDataSevice.findByCategoryName(name);
         if (Objects.isNull(category))
             throw new InvalidIdException("No Category with this Name Exists!!");
@@ -109,7 +109,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public ResponseEntity<GenericResponse> deleteCategoryById(Long id) {
+    public ResponseEntity<GenericResponse<?>> deleteCategoryById(Long id) {
         Optional<Category> optionalCategory = categoryDataSevice.findById(id);
         if (optionalCategory.isEmpty())
             throw new InvalidIdException("No Category with this Id exists!!");
@@ -120,7 +120,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public ResponseEntity<GenericResponse> deleteCategoryByName(String name) {
+    public ResponseEntity<GenericResponse<?>> deleteCategoryByName(String name) {
         Category category = categoryDataSevice.findByCategoryName(name);
         if (Objects.isNull(category))
             throw new InvalidIdException("No Category with this Name Exists!!");
@@ -130,3 +130,6 @@ public class CategoryServiceImpl implements CategoryService {
         return responseBuilder.getSuccessResponse("Category has been successfully Deleted!!", HttpStatus.OK);
     }
 }
+
+
+

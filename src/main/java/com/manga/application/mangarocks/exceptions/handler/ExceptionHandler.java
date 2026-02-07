@@ -21,10 +21,10 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     @org.springframework.web.bind.annotation.ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<GenericResponse> handleConstraintException(ConstraintViolationException exception) {
+    public ResponseEntity<GenericResponse<?>> handleConstraintException(ConstraintViolationException exception) {
         log.error("Constraint Violation Exception {}", ExceptionUtils.getStackTrace(exception));
         ErrorType e = ErrorType.BAD_REQUEST;
-        GenericResponse genericResponse = GenericResponse.builder().errorResponse(
+        GenericResponse<?> genericResponse = GenericResponse.builder().errorResponse(
                 new ErrorResponse(
                         e.getErrorCode(),
                         e.getErrorDescription()
@@ -34,10 +34,10 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(ValidationException.class)
-    public ResponseEntity<GenericResponse> handleValidationException(ValidationException exception) {
+    public ResponseEntity<GenericResponse<?>> handleValidationException(ValidationException exception) {
         log.error("Validation Exception {}", ExceptionUtils.getStackTrace(exception));
         ErrorType e = ErrorType.BAD_REQUEST;
-        GenericResponse genericResponse = GenericResponse.builder().errorResponse(
+        GenericResponse<?> genericResponse = GenericResponse.builder().errorResponse(
                 new ErrorResponse(
                         e.getErrorCode(),
                         (Strings.isNotBlank(exception.getMessage())) ? exception.getMessage() : e.getErrorDescription()
@@ -47,10 +47,10 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(InvalidIdException.class)
-    public ResponseEntity<GenericResponse> handleInvalidIdException(InvalidIdException exception) {
+    public ResponseEntity<GenericResponse<?>> handleInvalidIdException(InvalidIdException exception) {
         log.error("Invalid Id Exception {}", ExceptionUtils.getStackTrace(exception));
         ErrorType e = ErrorType.ID_NOT_FOUND;
-        GenericResponse genericResponse = GenericResponse.builder().errorResponse(
+        GenericResponse<?> genericResponse = GenericResponse.builder().errorResponse(
                 new ErrorResponse(
                         e.getErrorCode(),
                         (Strings.isNotBlank(exception.getMessage())) ? exception.getMessage() : e.getErrorDescription()
@@ -59,3 +59,6 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(genericResponse, HttpStatus.NOT_FOUND);
     }
 }
+
+
+

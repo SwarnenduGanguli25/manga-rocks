@@ -19,8 +19,11 @@ public class UserControllerImpl implements UserController {
     private final ObjectMapper maskingObjectMapper = MaskingUtil.getMaskingObjectMapper();
 
     @Override
-    public ResponseEntity<GenericResponse> registerUser(UserRegisterDTO userRegisterDTO) throws JsonProcessingException {
+    public ResponseEntity<GenericResponse<?>> registerUser(UserRegisterDTO userRegisterDTO) throws JsonProcessingException {
         log.info("User Registration Request {}", JsonParser.objectToJson(maskingObjectMapper.writeValueAsString(userRegisterDTO)));
         return null;
     }
 }
+
+
+
