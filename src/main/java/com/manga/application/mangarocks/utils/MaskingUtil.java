@@ -17,10 +17,8 @@ public class MaskingUtil {
     public static ObjectMapper getMaskingObjectMapper() {
         ObjectMapper mapper = new ObjectMapper();
         AnnotationIntrospector serializationAnnotationIntrospector = mapper.getSerializationConfig().getAnnotationIntrospector();
-        AnnotationIntrospector deserializationAnnotationIntrospector = mapper.getDeserializationConfig().getAnnotationIntrospector();
         AnnotationIntrospector updatedSerializationAnnotationIntrospector = AnnotationIntrospectorPair.pair(serializationAnnotationIntrospector, new MaskAnnotationIntrospector());
-        AnnotationIntrospector updatedDeserializationAnnotationIntrospector = AnnotationIntrospectorPair.pair(deserializationAnnotationIntrospector, new MaskAnnotationIntrospector());
-        mapper.setAnnotationIntrospectors(updatedSerializationAnnotationIntrospector, updatedDeserializationAnnotationIntrospector);
+        mapper.setAnnotationIntrospector(updatedSerializationAnnotationIntrospector);
         return mapper;
     }
 
@@ -42,7 +40,7 @@ public class MaskingUtil {
 
         @Override
         public void serialize(String value, JsonGenerator gen, SerializerProvider provider) throws IOException {
-            gen.writeString(value.replaceAll("[<>a-zA-Z0-9]", "*"));
+            gen.writeString("*".repeat(value.length()));
         }
     }
 }

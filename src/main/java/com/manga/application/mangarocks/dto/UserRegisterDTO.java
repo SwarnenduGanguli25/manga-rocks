@@ -10,8 +10,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @Getter
 @Setter
@@ -22,12 +23,12 @@ import javax.validation.constraints.Pattern;
 public class UserRegisterDTO {
 
     @JsonProperty("username")
-    @Pattern(regexp = "^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$", message = "Please provide username containing min eight characters to max twenty characters containing letters and numbers", groups = {UserRegisterRequestValidation.class})
+    @Pattern(regexp = "^[a-zA-Z0-9]{8,20}$", message = "Please provide username containing eight to twenty letters and numbers only", groups = {UserRegisterRequestValidation.class})
     @NotBlank(message = "Please provide user Name", groups = {UserRegisterRequestValidation.class})
     private String userName;
 
     @JsonProperty("email")
-    @Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$", message = "Invalid email id", groups = {UserRegisterRequestValidation.class})
+    @Email(message = "Invalid email id", groups = {UserRegisterRequestValidation.class})
     @NotBlank(message = "Please provide email id", groups = {UserRegisterRequestValidation.class})
     @Mask
     private String email;
@@ -39,7 +40,7 @@ public class UserRegisterDTO {
     private String mobile;
 
     @JsonProperty("password")
-    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$", message = "Please provide password containing at least eight characters, with at least one number and containing both lower and uppercase letters and special characters", groups = {UserRegisterRequestValidation.class})
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,72}$", message = "Please provide password containing eight to seventy-two characters, with at least one number, lowercase letter, uppercase letter and special character", groups = {UserRegisterRequestValidation.class})
     @NotBlank(message = "Please provide valid password", groups = {UserRegisterRequestValidation.class})
     @Mask
     private String password;

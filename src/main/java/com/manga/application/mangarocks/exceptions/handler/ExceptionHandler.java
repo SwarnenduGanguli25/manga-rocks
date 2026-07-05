@@ -1,6 +1,5 @@
 package com.manga.application.mangarocks.exceptions.handler;
 
-import com.manga.application.mangarocks.controller.CategoryControllerImpl;
 import com.manga.application.mangarocks.dto.ErrorResponse;
 import com.manga.application.mangarocks.dto.GenericResponse;
 import com.manga.application.mangarocks.enums.ErrorType;
@@ -15,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-@RestControllerAdvice(assignableTypes = {CategoryControllerImpl.class})
+@RestControllerAdvice
 @Slf4j
 public class ExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -27,7 +26,7 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
         GenericResponse genericResponse = GenericResponse.builder().errorResponse(
                 new ErrorResponse(
                         e.getErrorCode(),
-                        e.getErrorDescription()
+                        (Strings.isNotBlank(exception.getMessage())) ? exception.getMessage() : e.getErrorDescription()
                 )
         ).build();
         return new ResponseEntity<>(genericResponse, HttpStatus.BAD_REQUEST);
